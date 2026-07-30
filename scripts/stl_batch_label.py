@@ -4,7 +4,7 @@ import tempfile
 
 folder = Path("./centered-stls")
 scad_file = Path(__file__).resolve().parent / "add_label.scad"
-output_folder = folder / "labeled-stls"
+output_folder = Path(f"labeled-stls")
 
 output_folder.mkdir(exist_ok=True)
 
