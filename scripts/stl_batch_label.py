@@ -17,6 +17,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
 
         subprocess.run([
             "openscad",
+            "--export-format", "binstl",
             "-o", str(labeled_stl),
             "-D", f'label_text="{stl.stem}"',
             str(scad_file),
