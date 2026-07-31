@@ -95,4 +95,7 @@ for output_stl in sorted(output_folder.glob("*_for-print.stl")):
     except subprocess.CalledProcessError:
         repaired_stl.unlink(missing_ok=True)
         print(f"Failed to repair {output_stl.name}, leaving original file intact.")
-        
+
+    except FileNotFoundError:
+        print("Admesh is not installed or not found in the system PATH. Please install Admesh to enable STL repair functionality.")
+        break
