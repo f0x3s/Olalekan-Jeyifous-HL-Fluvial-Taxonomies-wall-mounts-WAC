@@ -1,13 +1,13 @@
 from pathlib import Path
 import subprocess
 import tempfile
-import pymeshfix
 
 # Requires stl_cmd
 # https://github.com/AllwineDesigns/stl_cmd
 
 scad_label_file = Path("./scripts/generate_label.scad")
 scad_thermal_expansion_ring_file = Path("./scripts/thermal_expansion_ring.scad")
+scad_insert = Path("./scripts/insert.scad")
 
 folder = Path("./3d-files/isolated-mount-export")
 output_folder = Path("./ready-for-print")
@@ -31,6 +31,19 @@ with tempfile.TemporaryDirectory() as temp_dir:
             str(scad_thermal_expansion_ring_file),
         ], check=True)
 
+    print("Generated thermal expansion compensation ring.")
+
+    insert_puck_stl = output_folder / "insert.stl"
+
+    subprocess.run([
+                "openscad",
+                "--export-format", "binstl",
+                "-o", str(insert_puck_stl),
+                str(scad_insert),
+            ], check=True)
+
+    print("Generated insert puck.")
+    
     # Center the STL files and export to a a temporary folder
     for input_stl in input_stls:
         centered_stl = temp_folder / f"{input_stl.stem}_centered.stl"
@@ -83,21 +96,22 @@ for output_stl in sorted(output_folder.glob("*_for-print.stl")):
     repaired_stl = output_stl.with_suffix(".repairing.stl")
 
     try:
-        pymeshfix.clean_from_file(
-            str(output_stl),
-            str(repaired_stl),
-            verbose=True,
-            joincomp=True,
-        )
-
-        if not repaired_stl.exists() or repaired_stl.stat().st_size == 0:
-            raise RuntimeError(f"Repair failed for {output_stl.name}, no output file generated.")
+        subprocess.run([
+            "admesh",
+            f"--write-binary-stl={repaired_stl}",
+            str(output_stl)
+        ], check=True)
 
         repaired_stl.replace(output_stl)
 
         print(f"Repaired {output_stl.name}")
 
-    except Exception as e:
+    except subprocess.CalledProcessError:
         repaired_stl.unlink(missing_ok=True)
+        print(f"Failed to repair {output_stl.name}, leaving original file intact.")
+        
+    except FileNotFoundError:
+        print("Admesh is not installed or not found in the system PATH. Please install Admesh to enable STL repair functionality.")
+        break
 
-        print(f"Error repairing {output_stl.name}: {e}\n")
+        
