@@ -1,5 +1,5 @@
 union() {
-    translate([0,0,0.48])
+    translate([0,0,0.47])
         cylinder(h = 0.56, r=0.51375, $fn = 100, center = true); 
     
     cylinder(h = 0.5, r = .255, $fn = 100, center = true);
