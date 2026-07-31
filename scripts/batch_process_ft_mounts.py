@@ -2,7 +2,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 
-# Requires stl_cmd
+# Requires admesh & stl_cmd:
 # https://github.com/AllwineDesigns/stl_cmd
 
 scad_label_file = Path("./scripts/generate_label.scad")
@@ -33,6 +33,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
 
     print("Generated thermal expansion compensation ring.")
 
+    # generate insert puck
     insert_puck_stl = output_folder / "insert.stl"
 
     subprocess.run([

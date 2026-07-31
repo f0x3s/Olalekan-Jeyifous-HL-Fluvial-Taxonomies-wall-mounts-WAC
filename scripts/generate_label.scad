@@ -9,6 +9,7 @@ text_x = 0;
 text_y = -.75;
 
 union() {
+    // label
     translate([text_x, text_y, layer_height/2])
         linear_extrude(height = text_height)
             text(
@@ -18,6 +19,7 @@ union() {
                 valign = "center"
             );
     
+    // brim
     difference() {
         translate([0, -0.25, 1 * layer_height/2])
             cube([2.125, 1.5, layer_height], center = true);
