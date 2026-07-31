@@ -10,10 +10,11 @@ scad_thermal_expansion_ring_file = Path("./scripts/thermal_expansion_ring.scad")
 
 folder = Path("./3d-files/isolated-mount-export")
 output_folder = Path("./ready-for-print")
-output_folder.mkdir(exist_ok=True)
+output_folder.mkdir(parents=True, exist_ok=True)
 
 input_stls = list(folder.glob("*.stl"))
 
+# center, label, and thermally compensate the STL files
 with tempfile.TemporaryDirectory() as temp_dir:
 
     temp_folder = Path(temp_dir)
@@ -65,7 +66,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
         
         print(f"Labeled {input_stl.name}")
 
-        # subtract the ring from the centered STL file using stl_cmd to create a thermally compensated STL file  
+        # subtract the ring from the tagged STL file using stl_cmd to create a thermally compensated STL file
         subprocess.run([
             "stl_boolean",
             "-a", str(tagged_stl),
@@ -74,3 +75,24 @@ with tempfile.TemporaryDirectory() as temp_dir:
         ], check=True)
 
         print(f"thermally compensated STL: {output_stl}")
+
+# Repair completed output STL files
+for output_stl in sorted(output_folder.glob("*_for-print.stl")):
+
+    repaired_stl = output_stl.with_suffix(".repairing.stl")
+
+    try:
+        subprocess.run([
+            "admesh",
+            f"--write-binary-stl={repaired_stl}",
+            str(output_stl)
+        ], check=True)
+
+        repaired_stl.replace(output_stl)
+
+        print(f"Repaired {output_stl.name}")
+
+    except subprocess.CalledProcessError:
+        repaired_stl.unlink(missing_ok=True)
+        print(f"Failed to repair {output_stl.name}, leaving original file intact.")
+        
