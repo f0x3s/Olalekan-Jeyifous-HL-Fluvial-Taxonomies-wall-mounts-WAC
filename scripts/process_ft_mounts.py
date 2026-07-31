@@ -12,14 +12,25 @@ folder = Path("./3d-files/isolated-mount-export")
 output_folder = Path("./ready-for-print")
 output_folder.mkdir(exist_ok=True)
 
-input_stl = list(folder.glob("*.stl"))
+input_stls = list(folder.glob("*.stl"))
 
 with tempfile.TemporaryDirectory() as temp_dir:
 
     temp_folder = Path(temp_dir)
 
+    # generate a thermal expansion compensation ring STL file using OpenSCAD and the thermal_expansion_ring.scad script
+    # this fixes issue where print bulges at at transition between density regions
+    cut_tool_stl = temp_folder / "cut_tool.stl"
+
+    subprocess.run([
+            "openscad",
+            "--export-format", "binstl",
+            "-o", str(cut_tool_stl),
+            str(scad_thermal_expansion_ring_file),
+        ], check=True)
+
     # Center the STL files and export to a a temporary folder
-    for input_stl in input_stl:
+    for input_stl in input_stls:
         centered_stl = temp_folder / f"{input_stl.stem}_centered.stl"
         label_stl = temp_folder / f"{input_stl.stem}_label.stl"
         tagged_stl = temp_folder / f"{input_stl.stem}_tagged.stl"
@@ -52,18 +63,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
             "-u", str(tagged_stl),
         ], check=True)
         
-        print(f"Labeled {input_stl.name}")`
-
-        # generate a thermal expansion compensation ring STL file using OpenSCAD and the thermal_expansion_ring.scad script
-        # this fixes issue where print bulges at at transition between density regions
-        cut_tool_stl = temp_folder / "cut_tool.stl"
-
-        subprocess.run([
-                "openscad",
-                "--export-format", "binstl",
-                "-o", str(cut_tool_stl),
-                str(scad_thermal_expansion_ring_file),
-            ], check=True)
+        print(f"Labeled {input_stl.name}")
 
         # subtract the ring from the centered STL file using stl_cmd to create a thermally compensated STL file  
         subprocess.run([
