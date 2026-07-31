@@ -18,6 +18,31 @@ printed_folder.mkdir(parents=True, exist_ok=True)
 
 input_stls = list(folder.glob("*.stl"))
 
+# Repair input geometry
+for input_stl in input_stls:
+
+    repaired_stl = input_stl.with_suffix(".repairing.stl")
+
+    try:
+        subprocess.run([
+            "admesh",
+            f"--write-binary-stl={repaired_stl}",
+            str(input_stl)
+        ], check=True)
+
+        repaired_stl.replace(input_stl)
+
+        print(f"Repaired {input_stl.name}")
+
+    except subprocess.CalledProcessError:
+        repaired_stl.unlink(missing_ok=True)
+        print(f"Failed to repair {input_stl.name}, leaving original file intact.")
+        
+    except FileNotFoundError:
+        print("Admesh is not installed or not found in the system PATH. Please install Admesh to enable STL repair functionality.")
+        break
+
+
 # center, label, and thermally compensate the STL files
 with tempfile.TemporaryDirectory() as temp_dir:
 
