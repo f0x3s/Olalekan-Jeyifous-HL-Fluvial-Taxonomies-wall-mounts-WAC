@@ -1,4 +1,4 @@
-label_text = "test";
+label_text = "";
 
 mm_to_in = 0.03937805;
 layer_height = .2 * mm_to_in;

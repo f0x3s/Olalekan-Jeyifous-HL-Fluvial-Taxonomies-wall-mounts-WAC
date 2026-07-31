@@ -86,6 +86,10 @@ with tempfile.TemporaryDirectory() as temp_dir:
             ], check=True)
 
         except:
+
+            # distributed approach, works for non-manifold meshes that fail openscad import
+            # openscad just used for generating new geometry, boolean operations performed with stl_cmd
+
             label_stl = temp_folder / f"{input_stl.stem}_label.stl"
             tagged_stl = temp_folder / f"{input_stl.stem}_tagged.stl"
 
