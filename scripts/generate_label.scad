@@ -22,6 +22,6 @@ union() {
         translate([0, -0.25, 1 * layer_height/2])
             cube([2.125, 1.5, layer_height], center = true);
         translate([0, 0, layer_height])
-            cylinder(height = layer_height, r = 0.34, $fn = 100, center = true);
+            cylinder(h = layer_height, r = 0.34, $fn = 100, center = true);
     }
 }
