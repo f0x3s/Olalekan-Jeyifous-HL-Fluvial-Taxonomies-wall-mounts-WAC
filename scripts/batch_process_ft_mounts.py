@@ -1,6 +1,7 @@
 from pathlib import Path
 import subprocess
 import tempfile
+import pymeshfix
 
 # Requires stl_cmd
 # https://github.com/AllwineDesigns/stl_cmd
@@ -82,20 +83,21 @@ for output_stl in sorted(output_folder.glob("*_for-print.stl")):
     repaired_stl = output_stl.with_suffix(".repairing.stl")
 
     try:
-        subprocess.run([
-            "admesh",
-            f"--write-binary-stl={repaired_stl}",
-            str(output_stl)
-        ], check=True)
+        pymeshfix.clean_from_file(
+            str(output_stl),
+            str(repaired_stl),
+            verbose=True,
+            joincomp=True,
+        )
+
+        if not repaired_stl.exists() or repaired_stl.stat().st_size == 0:
+            raise RuntimeError(f"Repair failed for {output_stl.name}, no output file generated.")
 
         repaired_stl.replace(output_stl)
 
         print(f"Repaired {output_stl.name}")
 
-    except subprocess.CalledProcessError:
+    except Exception as e:
         repaired_stl.unlink(missing_ok=True)
-        print(f"Failed to repair {output_stl.name}, leaving original file intact.")
 
-    except FileNotFoundError:
-        print("Admesh is not installed or not found in the system PATH. Please install Admesh to enable STL repair functionality.")
-        break
+        print(f"Error repairing {output_stl.name}: {e}\n")
