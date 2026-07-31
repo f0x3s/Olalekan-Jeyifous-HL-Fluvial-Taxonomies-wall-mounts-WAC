@@ -13,6 +13,9 @@ folder = Path("./3d-files/isolated-mount-export")
 output_folder = Path("./ready-for-print")
 output_folder.mkdir(parents=True, exist_ok=True)
 
+printed_folder = output_folder / "printed"
+printed_folder.mkdir(parents=True, exist_ok=True)
+
 input_stls = list(folder.glob("*.stl"))
 
 # center, label, and thermally compensate the STL files
@@ -51,6 +54,12 @@ with tempfile.TemporaryDirectory() as temp_dir:
         label_stl = temp_folder / f"{input_stl.stem}_label.stl"
         tagged_stl = temp_folder / f"{input_stl.stem}_tagged.stl"
         output_stl = output_folder / f"{input_stl.stem}_for-print.stl"
+
+        printed_stl = printed_folder / f"{input_stl.stem}_for-print.stl"
+
+        if printed_stl.exists():
+            print(f"Skipping {input_stl.name}: already printed")
+            continue
         
         # Center the STL file and place its base at z=0 using the stl_zero command from stl_cmd
         subprocess.run([
