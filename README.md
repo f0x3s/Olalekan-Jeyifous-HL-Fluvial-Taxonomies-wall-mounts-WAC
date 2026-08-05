@@ -1,10 +1,13 @@
-# Olalekan Jeyifous Fluvial Taxonomies Wall Mounts (Hydrocosmic Litanies) 
+# Olalekan Jeyifous Fluvial Taxonomies Wall Mounts
 
-todo: images, process details, why meshmixer
+A programmatic approach to generating 40 unique wall mounts for Olekelan Jeyifous' sculpture series, *Fluvial Taxonomies* as part of his show, [*Hydrocosmic Litanies*](https://www.walkerart.org/whats-on/olalekan-jeyifous-hydricosmic-litanies/), at the Walker Art Center.
 
-Fabrication and maintenance files for the 3D-printed wall mounts used to install Olalekan Jeyifous' piece *Fluvial Taxonomies* as part of his show, *Hydrocosmic Litanies*, at the Walker Art Center.
+<p align="center">
+  <img src="media/placeholder.jpg" alt="gallery view" style="width:45%; height:auto;">
+  <img src="media/placeholder.jpg" alt="close-up" style="width:45%; height:auto;">
+</p>
 
-The repository contains the editable mount files with their exported meshes, final print-ready STLs, and a batch-processing workflow used to center, identify, thermally compensate, and repair each mount before printing.
+The repository contains the editable mount files with their exported meshes, final print-ready STLs, and the batch-processing workflow used to center, identify, thermally compensate, and repair each mount before printing.
 
 ## Files
 Fabrication files and processing tools for the wall-mount system.
@@ -24,9 +27,9 @@ Fabrication files and processing tools for the wall-mount system.
 > - ⚙️ [`thermal_expansion_ring.scad`](scripts/thermal_expansion_ring.scad) — *thermal-expansion compensation cutting geometry*
 > - ⚙️ [`insert.scad`](scripts/insert.scad) — *insert puck geometry*
 
-## TODO: prepro
+## Background and File Preproduction
 
-## Processing Behavior
+## Script Behavior
 
 For each STL in `3d-files/isolated-mount-export`, the batch-processing script:
 
