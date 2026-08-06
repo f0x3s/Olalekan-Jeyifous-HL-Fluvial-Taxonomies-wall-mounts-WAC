@@ -38,7 +38,7 @@ Installing *Fluvial Taxonomies* presented several technical challenges. The resi
   <img src="media/cross_mount.png" alt="base mount geometry cross sectional analysis" style="height:270px; width:auto;">
 </p>
 
-The inserted shaft collar allows for a strong coupling to wall-mounted rods (with the low-profile machine screw arresting axial rotation), and the channels allow epoxy to seep into the structure for a more mechanically rigid bond.
+The inserted shaft collar *([McMaster: 9946K15](https://www.mcmaster.com/9946K15/))* allows for a strong coupling to wall-mounted rods, with the low-profile machine screw *([McMaster: 92220A182](https://www.mcmaster.com/92220A182/))* arresting rotation inside the mount and the axial channels allow epoxy to seep into the structure for a more mechanically rigid bond.
 
 ## Script Behavior
 
