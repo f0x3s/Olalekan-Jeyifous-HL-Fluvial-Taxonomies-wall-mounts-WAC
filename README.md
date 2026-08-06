@@ -3,8 +3,8 @@
 A programmatic approach to generating 40 unique wall mounts for Olekelan Jeyifous' sculpture series, *Fluvial Taxonomies* as part of his show, [*Hydrocosmic Litanies*](https://www.walkerart.org/whats-on/olalekan-jeyifous-hydricosmic-litanies/), at the Walker Art Center.
 
 <p align="center">
-  <img src="media/placeholder.jpg" alt="gallery view" style="width:45%; height:auto;">
-  <img src="media/placeholder.jpg" alt="close-up" style="width:45%; height:auto;">
+  <img src="media/batch_glued.png" alt="batch of mounts epoxied to sculptures" style="height:300px; width:auto;">
+  <img src="media/array.png" alt="array of processed mount meshes" style="height:300px; width:auto;">
 </p>
 
 The repository contains the editable mount files with their exported meshes, final print-ready STLs, and the batch-processing workflow used to center, identify, thermally compensate, and repair each mount before printing.
@@ -45,10 +45,12 @@ A matching file placed in `ready-for-print/printed` is treated as complete and w
 
 ## Requirements
 
-* Python 3
-* OpenSCAD, available as `openscad` in the system PATH
-* ADMesh, available as `admesh` in the system PATH
-* `stl_cmd` by AllwineDesigns, including `stl_zero` and `stl_boolean` in the system PATH
+- Python 3
+- OpenSCAD, available as `openscad` in the system PATH
+- ADMesh, available as `admesh` in the system PATH
+- `stl_cmd` by AllwineDesigns, including `stl_zero` and `stl_boolean` in the system PATH
+
+*Recommended .stl viewer: [fstl](https://github.com/fstl-app/fstl)*
 
 ## Usage
 
