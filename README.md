@@ -31,6 +31,15 @@ Fabrication files and processing tools for the wall-mount system.
 
 ## Background and File Preproduction
 
+Installing *Fluvial Taxonomies* presented several technical challenges. The resin-printed sculptures are fragile, with highly detailed surfaces and no preordained mounting points nor provisions for hardware. The piece is intended to be shown as groupings of objects mounted offset from the walls in the gallery. I determined that the best way to hang them was a custom 3d-printed mount per-object, secured to the sculpture with specialty plastic resin. These mounts are created from duplicates of a standard base geometry, pictured below, that have each sculpture digitally subtracted from them:
+
+<p align="center">
+  <img src="media/iso_mount.png" alt="iso view of base mount geometry" style="height:270px; width:auto;">
+  <img src="media/cross_mount.png" alt="base mount geometry cross sectional analysis" style="height:270px; width:auto;">
+</p>
+
+The inserted shaft collar allows for a strong coupling to wall-mounted rods (with the low-profile machine screw arresting axial rotation), and the channels allow epoxy to seep into the structure for a more mechanically rigid bond.
+
 ## Script Behavior
 
 For each STL in `3d-files/isolated-mount-export`, the batch-processing script:
