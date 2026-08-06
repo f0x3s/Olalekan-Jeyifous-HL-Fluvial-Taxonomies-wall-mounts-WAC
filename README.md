@@ -1,13 +1,15 @@
 # Olalekan Jeyifous Fluvial Taxonomies Wall Mounts
 
-A programmatic approach to generating 40 unique wall mounts for Olekelan Jeyifous' sculpture series, *Fluvial Taxonomies* as part of his show, [*Hydrocosmic Litanies*](https://www.walkerart.org/whats-on/olalekan-jeyifous-hydricosmic-litanies/), at the Walker Art Center.
-
 <p align="center">
   <img src="media/batch_glued.png" alt="batch of mounts epoxied to sculptures" style="height:270px; width:auto;">
   <img src="media/array.png" alt="array of processed mount meshes" style="height:270px; width:auto;">
 </p>
 
-The repository contains the editable mount files with their exported meshes, final print-ready STLs, and the batch-processing workflow used to center, identify, thermally compensate, and repair each mount before printing.
+A programmatic approach to generating 40 unique wall mounts for Olekelan Jeyifous' sculpture series: *Fluvial Taxonomies* as part of [*Hydrocosmic Litanies*](https://www.walkerart.org/whats-on/olalekan-jeyifous-hydricosmic-litanies/), his solo exhibition at the Walker Art Center.
+
+This repository contains the editable mount files with their exported meshes, final print-ready STLs, and the batch-processing workflow used to center, identify, thermally compensate, and repair each mount before printing.
+
+*__This repository does not contain any of the original artwork meshes.__*
 
 ## Files
 Fabrication files and processing tools for the wall-mount system.
