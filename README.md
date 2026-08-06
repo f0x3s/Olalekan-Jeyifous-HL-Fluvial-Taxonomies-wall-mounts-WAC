@@ -38,13 +38,17 @@ Installing *Fluvial Taxonomies* presented several technical challenges. The resi
   <img src="media/cross_mount.png" alt="base mount geometry cross sectional analysis" style="height:270px; width:auto;">
 </p>
 
-The inserted shaft collar *([McMaster: 9946K15](https://www.mcmaster.com/9946K15/))* allows for a strong coupling to wall-mounted rods, with the low-profile machine screw *([McMaster: 92220A182](https://www.mcmaster.com/92220A182/))* arresting rotation inside the mount and the axial channels allow epoxy to seep into the structure for a more mechanically rigid bond.
+The inserted shaft collar *([McMaster: 9946K15](https://www.mcmaster.com/9946K15/))* allows for a strong coupling to wall-mounted rods, with the low-profile machine screw *([McMaster: 92220A182](https://www.mcmaster.com/92220A182/))* arresting rotation inside the mount and the axial channels allow epoxy to seep into the structure for a mechanically-rigid bond.
 
 <p align="center">
   <img src="media/measurement.png" alt="recording physical dimensions asst. Prerna" style="height:200px; width:auto;">
   <img src="media/embedded.png" alt="mount geometry embedded in sculpture mesh" style="height:200px; width:auto;">
   <img src="media/subtracted.png" alt="sculpture mesh subtracted from mount geometry" style="height:200px; width:auto;">
 </p>
+
+The next step was to scale the sculpture models, virtually place the mounts, and perform the Boolean operations. The artist-provided sculpture mesh files were not consistently scaled, so an extent measurement was taken from the physical piece and used to correctively transform the file. Then, a copy of the mount geometry was manually oriented against it, with as much of the region beyond the start of the epoxy channels intersecting the sculpture geometry as possible. The sculpture was subtracted from the mount, and the mount was re-oriented axially along the z-axis (without regard to its position in world space), before being made watertight and exported as a stereolithography file.
+
+Meshmixer was chosen to perform these operations as it was the most lightweight tool that could consistently load the meshes and successfully perform the Boolean. Other programs either lacked the ability to both manipulate and view the mesh efficiently, or failed to perform the subtraction due to the number of mesh degeneracies in the sculpture files.
 
 ## Script Behavior
 
