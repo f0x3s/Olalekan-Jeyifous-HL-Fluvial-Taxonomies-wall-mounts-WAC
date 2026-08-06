@@ -38,7 +38,7 @@ Installing *Fluvial Taxonomies* presented several technical challenges. The resi
   <img src="media/cross_mount.png" alt="base mount geometry cross sectional analysis" style="height:270px; width:auto;">
 </p>
 
-The inserted shaft collar *([McMaster: 9946K15](https://www.mcmaster.com/9946K15/))* allows for a strong coupling to wall-mounted rods, with the low-profile machine screw *([McMaster: 92220A182](https://www.mcmaster.com/92220A182/))* arresting rotation inside the mount and the axial channels allow epoxy to seep into the structure for a mechanically-rigid bond.
+The inserted shaft collar *([McMaster: 9946K15](https://www.mcmaster.com/9946K15/))* allows for strong coupling to wall-mounted rods, and the low-profile machine screw *([McMaster: 92220A182](https://www.mcmaster.com/92220A182/))* arrests rotation inside the mount. The axial channels provide space for epoxy to seep into the structure for a mechanically strong bond.
 
 <p align="center">
   <img src="media/measurement.png" alt="recording physical dimensions asst. Prerna" style="height:200px; width:auto;">
@@ -56,13 +56,15 @@ For each STL in `3d-files/isolated-mount-export`, the batch-processing script:
 
 1. Centers the mesh on the x/y origin and places its base on the z=0 plane.
 2. Generates an identification label from the source filename and joins it to the mount.
-3. Subtracts a compensation tool around the insert region to reduce bulging at the transition between printed density regions.
+3. Subtracts a compensation tool around the insert region to reduce bulging at the transition between printed density regions. This tool also clearances the shaft collar void slightly to correct for mesh warping in Boolean process.
 4. Exports the completed model to `ready-for-print` using the suffix `_for-print.stl`.
 5. Repairs the completed STL with ADMesh.
 
 The script first attempts to perform the label union and compensation cut as a single OpenSCAD operation. If OpenSCAD cannot process the imported mesh, it falls back to separate `stl_cmd` boolean operations for non-manifold geometry.
 
 A matching file placed in `ready-for-print/printed` is treated as complete and will be skipped during later runs.
+
+Additionally, the script generates an 'insert puck'. This is placed on top of the shaft collar to eliminate need for bridging over the center hole.
 
 ## Requirements
 
@@ -94,3 +96,7 @@ ready-for-print/
 ```
 
 The source filename is carried through the workflow and used for both the identification label and final output filename. Move a verified print into `ready-for-print/printed` to prevent it from being regenerated during subsequent batch runs.
+
+## Printing
+
+I printed the mounts and insert pucks on a Prusa MK4 using PETG. Layer height was set to `0.15mm Structural` with 30% infill. A pause command was inserted into the G-Code at layer 126 (18.89mm) so that the shaft collar and insert puck may be placed into the print. 
