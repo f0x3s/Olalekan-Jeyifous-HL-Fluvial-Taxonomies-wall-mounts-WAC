@@ -31,7 +31,7 @@ Fabrication files and processing tools for the wall-mount system.
 
 ## Background and File Preproduction
 
-Installing *Fluvial Taxonomies* presented several technical challenges. The resin-printed sculptures are fragile, with highly detailed surfaces and no preordained mounting points nor provisions for hardware. The piece is intended to be shown as groupings of objects mounted offset from the walls in the gallery. I determined that the best way to hang them was a custom 3d-printed mount per-object, secured to the sculpture with specialty plastic resin. These mounts are created from duplicates of a standard base geometry, pictured below, that each have a sculpture digitally subtracted from them:
+Installing *Fluvial Taxonomies* presented several technical challenges. The resin-printed sculptures are fragile, with highly detailed surfaces and no preordained mounting points nor provisions for hardware. The piece is intended to be shown as groupings of objects mounted offset from the walls in the gallery. I determined that the best way to hang them was a custom 3d-printed mount per-object, secured to the sculpture with specialty plastic epoxy. These mounts are created from duplicates of a standard base geometry, pictured below, that each have a sculpture digitally subtracted from them:
 
 <p align="center">
   <img src="media/iso_mount.png" alt="iso view of base mount geometry" style="height:270px; width:auto;">
@@ -41,8 +41,9 @@ Installing *Fluvial Taxonomies* presented several technical challenges. The resi
 The inserted shaft collar *([McMaster: 9946K15](https://www.mcmaster.com/9946K15/))* allows for a strong coupling to wall-mounted rods, with the low-profile machine screw *([McMaster: 92220A182](https://www.mcmaster.com/92220A182/))* arresting rotation inside the mount and the axial channels allow epoxy to seep into the structure for a more mechanically rigid bond.
 
 <p align="center">
-  <img src="media/measurement.png" alt="recording physical dimensions asst. Prerna" style="height:270px; width:auto;">
-  <img src="media/temp.png" alt="temp" style="height:270px; width:auto;">
+  <img src="media/measurement.png" alt="recording physical dimensions asst. Prerna" style="height:200px; width:auto;">
+  <img src="media/embedded.png" alt="mount geometry embedded in sculpture mesh" style="height:200px; width:auto;">
+  <img src="media/subtracted.png" alt="sculpture mesh subtracted from mount geometry" style="height:200px; width:auto;">
 </p>
 
 ## Script Behavior
