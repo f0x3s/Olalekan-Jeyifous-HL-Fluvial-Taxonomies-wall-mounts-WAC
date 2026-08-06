@@ -9,7 +9,7 @@ A programmatic approach to generating 40 unique wall mounts for Olekelan Jeyifou
 
 This repository contains the editable mount files with their exported meshes, final print-ready STLs, and the batch-processing workflow used to center, identify, thermally compensate, and repair each mount before printing.
 
-*__This repository does not contain any of the original artwork meshes.__*
+*__This repository does not contain any artwork meshes or original artist files__*
 
 ## Files
 Fabrication files and processing tools for the wall-mount system.
