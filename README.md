@@ -83,7 +83,7 @@ Run the batch processor from the repository root:
 python3 scripts/batch_process_ft_mounts.py
 ```
 
-New source files should be placed in:
+New source files exported from meshmixer should be placed in:
 
 ```text
 3d-files/isolated-mount-export/
