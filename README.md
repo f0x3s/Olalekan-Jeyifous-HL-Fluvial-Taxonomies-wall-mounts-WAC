@@ -100,3 +100,10 @@ The source filename is carried through the workflow and used for both the identi
 ## Printing
 
 I printed the mounts and insert pucks on a Prusa MK4 using PETG. Layer height was set to `0.15mm STRUCTURAL` with 30% infill. A pause command was inserted into the G-Code at layer 126 (18.89mm) so that the shaft collar and insert puck may be placed into the print.
+
+<p align="center">
+  <img src="media/printed.png" alt="beginning of mount print at pause point." style="height:200px; width:auto;">
+  <img src="media/with_collar.png" alt="collar placed" style="height:200px; width:auto;">
+  <img src="media/with_puck.png" alt="puck placed- print resumes here" style="height:200px; width:auto;">
+</p>
+
